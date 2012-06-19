@@ -64,8 +64,8 @@ var name = escape('Kumare - Exclusive Movie Clip_(mkv h.264 720p).mkv');
 btapp.live(
 	'torrent ' + hash + ' file ' + name + ' properties streaming_url', 
 	function(src) {
-		// The folks over at http://videojs.com/ have a wonderful js media player
-		// that is super simple to use.
+		// The folks over at http://videojs.com/ have a wonderful js 
+		// media player that is super simple to use.
 		_V_("kumare_video").ready(function(){
 			this.src(src);
 			this.play();
