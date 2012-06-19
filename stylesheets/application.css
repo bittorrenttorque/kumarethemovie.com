@@ -3,27 +3,44 @@ body {
 	background-color: black;
 }
 
-#video_container {
+.content {
 	position: absolute;
+	height: auto;
 	width: 600px;
-	height: 360px;
 
 	left: 50%;
-	margin-left: 50px;
-	top: 50%;
-	margin-top: -180px;
+	margin-left: -300px;
+	top: 50px;
 }
 
 #btapp_code {
-	position: absolute;
-	width: 600px;
-	height: 360px;
-
-	right: 50%;
-	margin-right: 50px;
-	top: 50%;
-	margin-top: -180px;
+	height: auto;
+	width: 100%;
+	box-shadow: 0px 0px 25px #888;
+	margin-bottom: 25px;
 }
 
-#btapp_code .prettyprint {
+#video_container {
+	height: 360px;
+	width: 100%;
+	box-shadow: 0px 0px 25px #888;
+}
+
+#kumare_images {
+	margin: 0;
+	height: auto;
+	width: 100%;
+	box-shadow: 0px 0px 25px #888;
+}
+
+#kumare_images img {
+	width: 75px;
+	height: 75px;
+}
+
+.content h3 {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 50px;
 }

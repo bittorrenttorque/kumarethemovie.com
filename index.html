@@ -22,12 +22,12 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/application.css" />
 
 		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-		<script src="http://vjs.zencdn.net/c/video.js"></script>
+	    <script src="http://vjs.zencdn.net/c/video.js"></script>
 
 		<link href="stylesheets/prettify.css" type="text/css" rel="stylesheet" />
-		<script type="text/javascript" src="javascripts/prettify.js"></script>		
+		<script type="text/javascript" src="javascripts/lib/prettify.js"></script>		
 
-  		<title>Kumare</title>
+  		<title>Kumaré</title>
 	</head>
 	<body onload="prettyPrint()">
 		<a href="https://github.com/pwmckenna/kumarethemovie"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
@@ -40,14 +40,9 @@
 				</div>
 			</div>
 		</div>
-		<div id="video_container">
-			<video id="kumare_video" class="video-js vjs-default-skin" controls
-			preload="auto" width="600" height="360" poster="iamges/bg.jpg"
-			data-setup="{}">
-				<source src="my_video.mp4" type='video/mp4'>
-			</video>
-		</div>
-		<div id="btapp_code"><pre class="prettyprint">
+		<div class="content">
+			<h3>Download Kumare!</h3>
+			<div id="btapp_code"><pre class="prettyprint">
 var btapp = new Btapp;
 btapp.connect();
 
@@ -55,8 +50,16 @@ var url = 'http://featuredcontent.utorrent.com/torrents/Kumare-BitTorrent.torren
 btapp.on('add', function() {
 	btapp.get('add').torrent(url);
 });
-
+// The info hash of the Kumare torrent is the following
+// This will be the key in the Backbone Collection of torrents.
 var hash = '4CB4A0336A3C01836536111F44D8A252FDFB0898';
+			</div>
+
+
+			<h3>Streaming Video From A Torrent</h3>
+			<div id="btapp_code"><pre class="prettyprint">
+// The name of the file is the key in the Backbone Collection 
+// of files in the torrent.
 var name = escape('Kumare - Exclusive Movie Clip_(mkv h.264 720p).mkv');
 btapp.live(
 	'torrent ' + hash + ' file ' + name + ' properties streaming_url', 
@@ -66,6 +69,31 @@ btapp.live(
 			this.play();
 		});
 	}
-);</pre></div>
+);</pre>
+			</div>
+			<div id="video_container">
+				<video id="kumare_video" class="video-js vjs-default-skin" controls
+				preload="auto" width="600" height="360"
+				data-setup="{}">
+				</video>
+			</div>
+			<h3>Displaying Images From A Torrent</h3>
+			<div id="btapp_code"><pre class="prettyprint">
+// Lets display the images in the torrent
+btapp.live(
+	'torrent ' + hash + ' file * properties',
+	function(properties) {
+		var name = properties.get('name');
+		var src = properties.get('streaming_url');
+		if(name.indexOf('jpg', name.length - 3) !== -1) {
+			var img = $('&#60;img src="' + src + '" /&#62;');
+			$('#kumare_images').append(img);
+		}
+	}
+);</pre>
+			</div>
+			<ul id="kumare_images">
+			</ul>
+		</content>
 	</body>
 </html>
