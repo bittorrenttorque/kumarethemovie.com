@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<!-- collection of general dependencies -->
+		<script type="text/javascript" src="javascripts/lib/jquery.js"></script>
+		<script type="text/javascript" src="javascripts/lib/json2.js"></script>
+		<script type="text/javascript" src="javascripts/lib/underscore.js"></script>
+		<script type="text/javascript" src="javascripts/lib/backbone.js"></script>
+
+		<!-- pwmckenna/backbrace submodule -->
+		<script type="text/javascript" src="javascripts/backbrace/backbrace.js"></script>
+		<!-- pwmckenna/btapp submodule -->
+		<script type="text/javascript" src="javascripts/btapp/btapp.js"></script>
+		<script type="text/javascript" src="javascripts/btapp/client.btapp.js"></script>
+		<script type="text/javascript" src="javascripts/btapp/plugin.btapp.js"></script>
+		<script type="text/javascript" src="javascripts/btapp/pairing.btapp.js"></script>
+		<!-- pwmckenna/jStorage submodule -->
+		<script type="text/javascript" src="javascripts/jStorage/jstorage.min.js"></script>
+
+		<script type="text/javascript" src="javascripts/application.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/application.css" />
+
+		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/c/video.js"></script>
+
+		<link href="stylesheets/prettify.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="javascripts/prettify.js"></script>		
+
+  		<title>Kumare</title>
+	</head>
+	<body onload="prettyPrint()">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#">
+						<span class="highlight">BitTorrent Torque Labs</span>: Powering web apps using <span class="highlight">Btapp.js</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="video_container">
+			<video id="kumare_video" class="video-js vjs-default-skin" controls
+			preload="auto" width="600" height="360" poster="iamges/bg.jpg"
+			data-setup="{}">
+				<source src="my_video.mp4" type='video/mp4'>
+			</video>
+		</div>
+		<div id="btapp_code"><pre class="prettyprint">
+var btapp = new Btapp;
+btapp.connect();
+
+var url = 'http://featuredcontent.utorrent.com/torrents/Kumare-BitTorrent.torrent';
+btapp.on('add', function() {
+	btapp.get('add').torrent(url);
+});
+
+var hash = '4CB4A0336A3C01836536111F44D8A252FDFB0898';
+var name = escape('Kumare - Exclusive Movie Clip_(mkv h.264 720p).mkv');
+btapp.live(
+	'torrent ' + hash + ' file ' + name + ' properties streaming_url', 
+	function(src) {
+		_V_("kumare_video").ready(function(){
+			this.src(src);
+			this.play();
+		});
+	}
+);</pre></div>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+body {
+	/**background-image: url(../images/bg.jpg);**/
+	background-color: black;
+}
+
+#description {
+	position: absolute;
+	left: 50px;
+	right: 50px;
+	top: 100px;
+	height: 100px;
+	background-color: black;
+	color: white;
+	border-radius: 5px;
+}
+
+#video_container {
+	position: absolute;
+	width: 600px;
+	height: 360;
+	right: 50px;
+	top: 200px;
+	bottom: 50px;
+}
+
+#btapp_code {
+	position: absolute;
+	right: 700px;
+	left: 50px;
+	top: 200px;
+	bottom: 50px;
+}
+
+#btapp_code .prettyprint {
+}
