@@ -1,15 +1,15 @@
 jQuery(function() {
-	var btapp = new Btapp;
+	window.btapp = new Btapp;
 	btapp.connect();
 
 	var url = 'http://featuredcontent.utorrent.com/torrents/Kumare-BitTorrent.torrent';
-	btapp.on('add', function() {
+	btapp.on('add:add', function() {
 		btapp.get('add').torrent(url);
 	});
 
 	// Lets display the main video in the torrent
-	var hash = '4CB4A0336A3C01836536111F44D8A252FDFB0898';
-	var name = escape('Kumare - Exclusive Movie Clip_(mkv h.264 720p).mkv');
+	var hash = 'EDC368812EC54125DEFC17B2E21CBB76C9CB3A95';
+	var name = escape('Kumare - Exclusive Movie Clip.mkv');
 	btapp.live(
 		'torrent ' + hash + ' file ' + name + ' properties streaming_url', 
 		function(src, properties, file, files, torrent, torrents) {
@@ -40,8 +40,8 @@ jQuery(function() {
 					var name = properties.get('name');
 					var src = properties.get('streaming_url');
 					if(name.indexOf('jpg', name.length - 3) !== -1) {
-						var img = $('<img src="' + src + '" />');
-						$('#kumare_images').append(img);
+						//var img = $('<img src="' + src + '" />');
+						//$('#kumare_images').append(img);
 					}
 				}
 			};
